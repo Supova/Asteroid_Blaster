@@ -18,7 +18,7 @@ Listings/
 *.lst
 
 # RTE and generated files
-RTE/_Target_1/
+RTE/
 
 # Logs and reports
 *.log
