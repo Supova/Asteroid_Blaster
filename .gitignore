@@ -1,0 +1,51 @@
+# Keil uVision project files
+*.uvprojx
+*.uvoptx
+*.uvguix.*
+*.scvd
+
+# Build artifacts
+Objects/
+Listings/
+*.axf
+*.hex
+*.bin
+*.elf
+*.map
+*.lnp
+*.sct
+*.dep
+*.lst
+
+# RTE and generated files
+RTE/_Target_1/
+
+# Logs and reports
+*.log
+*.htm
+*.build_log.htm
+
+# Backup/temp files
+*.bak
+*.tmp
+*.swp
+*~
+
+# IDE / editor
+.vscode/
+.vs/
+*.suo
+*.user
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+
+# Generic build dirs
+/build/
+
+# End of file
