@@ -48,4 +48,7 @@ __pycache__/
 # Generic build dirs
 /build/
 
+# Other
+notes.md
+
 # End of file
