@@ -18,8 +18,8 @@ const char *prompt_game_welcome = "\n\rWelcome to Asteroid Blaster!\n\r"
                                   "asteroids and save your crew?\n\r\n\r";
 
 const char *prompt_game_rules =
-    "Press 'a' to move left, and 'd' to move "
-    "right.\n\r Press SW1 to increase movement speed. \n\r If an asteroid "
+    "Press 'a' to move left and 'd' to move "
+    "right.\n\rPress SW1 to increase movement speed.\n\rIf an asteroid "
     "collides with the ship, game ends.\n\r\n\r";
 const char *prompt_game_beginning =
     "Are you ready to start playing? (Press Y)\n\r";
