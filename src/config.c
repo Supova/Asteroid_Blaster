@@ -13,10 +13,14 @@ const char *hide_cursor = "\x1B[?25l";
 const char *show_cursor = "\x1B[?25h";
 
 // Prompts and board
-const char *prompt_game_over = "\033[31;1mGAME OVER!\n\r";
-const char *prompt_game_beginning =
-    "Are you ready to start game? (Press Y)\n\r";
+const char *prompt_game_welcome = "\n\rWelcome to Asteroid Blaster!\n\r"
+                                  "Can you survive by destroying incoming "
+                                  "asteroids and save your crew?\n\r\n\r";
+
 const char *prompt_game_rules =
-    "Press 'w' to move up, 'a' to move left, 's' to move down, and 'd' to move "
-    "right.\n\r Press SW1 to increase movement speed. \n\r If cursor '*' "
-    "collides with a wall game ends.\n\r";
+    "Press 'a' to move left, and 'd' to move "
+    "right.\n\r Press SW1 to increase movement speed. \n\r If an asteroid "
+    "collides with the ship, game ends.\n\r\n\r";
+const char *prompt_game_beginning =
+    "Are you ready to start playing? (Press Y)\n\r";
+const char *prompt_game_over = "\033[31;1mGAME OVER!\n\r";

@@ -18,16 +18,16 @@ void uart_init(void) {
     UART0->CTL |= (1 << 0) | (1 << 8) | (1 << 9);
 }
 
+/* Wait (block) until a character arrives on the serial port, then return it */
 uint8_t uart_read_blocking(void) {
-    while (UART0->FR & (1 << 4)) {
-    }
-    return (uint8_t)(UART0->DR & 0xFF);
+    while (UART0->FR & (1 << 4)); // busy wait while RX FIFO is empty
+    return (uint8_t)(UART0->DR & 0xFF); // read from data reg and return 8 bit or recieved char
 }
 
 void uart_interrupt_init(void) {
-    UART0->ICR = (1 << 4);
-    UART0->IM = (1 << 4);
-    NVIC_EnableIRQ(UART0_IRQn);
+    UART0->ICR = (1 << 4); // Clear any pending/stale RX interrupt before enabling
+    UART0->IM = (1 << 4); // Generate an interrupt when data arrives in RX FIFO
+    NVIC_EnableIRQ(UART0_IRQn); // Enable UART0 interrupts in the ARM CPU
 }
 
 void UART0_Handler(void) {
