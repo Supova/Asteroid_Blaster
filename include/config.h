@@ -49,9 +49,10 @@ extern const char *hide_cursor;
 extern const char *show_cursor;
 
 // Prompts and board
-extern const char *prompt_game_over;
+extern const char *prompt_game_welcome;
 extern const char *prompt_game_beginning;
 extern const char *prompt_game_rules ;
+extern const char *prompt_game_over;
 
 
 #endif
