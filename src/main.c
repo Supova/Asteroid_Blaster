@@ -1,5 +1,8 @@
-#include "TM4C123.h" // Device header
-#include "utils.h"  // set compiler include path to have "include"
+// set compiler include path to have "include"
+#include "config.h"
+#include "utils.h"
+#include "uart.h"
+#include "render.h"
 
 int main() {
     uart_init();
