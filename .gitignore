@@ -50,5 +50,7 @@ __pycache__/
 
 # Other
 notes.md
+concepts.md
+docs/commented_src_code
 
 # End of file

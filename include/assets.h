@@ -26,17 +26,16 @@ struct asteroid_t {
 };
 
 struct board {
-    // struct ship player;
     // array of structs
     struct bullet_t bullets[10];
     struct asteroid_t asteroids[10];
-    // score
+    // score ?
 };
 
 struct ship {
     uint8_t x;
     uint8_t y;
-    // health
+    // health ?
 };
 
 #endif
