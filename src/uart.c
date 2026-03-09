@@ -1,15 +1,20 @@
-#include "TM4C123.h" // device headers
 #include "uart.h"
+#include "TM4C123.h" // device headers
 #include "config.h"
 #include "utils.h"
 
 void uart_init(void) {
+    /* Enable clocks for UART0 and GPIO Port A */
     SYSCTL->RCGCUART |= (1 << 0);
     SYSCTL->RCGCGPIO |= (1 << 0);
+
+    /* Configure PA0 (RX) and PA1 (TX) for UART alternate function */
     GPIOA->AFSEL |= (1 << 0) | (1 << 1);
     GPIOA->PCTL &= ~0x000000FF;
     GPIOA->PCTL |= 0x00000011;
     GPIOA->DEN |= (1 << 0) | (1 << 1);
+
+    /* Configure UART0 */
     UART0->CTL &= ~(1 << 0);
     UART0->IBRD = 104;
     UART0->FBRD = 11;
@@ -18,16 +23,18 @@ void uart_init(void) {
     UART0->CTL |= (1 << 0) | (1 << 8) | (1 << 9);
 }
 
-/* Wait (block) until a character arrives on the serial port, then return it */
 uint8_t uart_read_blocking(void) {
-    while (UART0->FR & (1 << 4)); // busy wait while RX FIFO is empty
-    return (uint8_t)(UART0->DR & 0xFF); // read from data reg and return 8 bit or recieved char
+    /* Block until data available in RX FIFO */
+    while (UART0->FR & (1 << 4))
+        ;
+    return (uint8_t)(UART0->DR & 0xFF);
 }
 
 void uart_interrupt_init(void) {
-    UART0->ICR = (1 << 4); // Clear any pending/stale RX interrupt before enabling
-    UART0->IM = (1 << 4); // Generate an interrupt when data arrives in RX FIFO
-    NVIC_EnableIRQ(UART0_IRQn); // Enable UART0 interrupts in the ARM CPU
+    UART0->ICR = (1 << 4);           // Clear pending RX interrupts
+    UART0->IM = (1 << 4);            // Enable RX interrupt generation
+    NVIC_EnableIRQ(UART0_IRQn);      // Enable UART0 in CPU interrupt controller
+    __enable_irq();                  // Enable global interrupts
 }
 
 void UART0_Handler(void) {
