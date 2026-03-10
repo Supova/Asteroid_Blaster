@@ -2,7 +2,7 @@
 #include "TM4C123.h"
 #include "utils.h"
 // Globals
-volatile struct board game_board;
+volatile board_t game_board;
 
 const char *BOARD = " -------------------- \n\r"
                     "|                    |\n\r"
@@ -33,6 +33,10 @@ const char *BOARD = " -------------------- \n\r"
 
 
 // Function definitions -----------------------------------------------------------------------
+
+void delay(volatile uint32_t seconds){
+    for (volatile uint32_t i = 0; i < seconds; i++);
+}
 
 uint8_t simple_read_character(void) { 
     return (uint8_t)(UART0->DR & 0xFF); 
