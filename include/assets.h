@@ -4,38 +4,33 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-//--------------------STRUCTS--------------------------------------------------------------------------------------
-struct position {
+typedef struct position {
     uint8_t x;
     uint8_t y;
-};
+} position_t;
 
-struct bullet_t {
-    // char bullet = "|"
+typedef struct bullet {
     uint8_t id;
     uint8_t x;
     uint8_t y;
     bool in_frame;
-};
+} bullet_t;
 
-struct asteroid_t {
+typedef struct asteroid {
     uint8_t id;
     uint8_t x;
     uint8_t y;
-    bool in_frame; // used as flag for active asteroids
-};
+    bool in_frame;
+} asteroid_t;
 
-struct board {
-    // array of structs
-    struct bullet_t bullets[10];
-    struct asteroid_t asteroids[10];
-    // score ?
-};
-
-struct ship {
+typedef struct ship {
     uint8_t x;
     uint8_t y;
-    // health ?
-};
+} ship_t;
+
+typedef struct board {
+    bullet_t bullets[10];
+    asteroid_t asteroids[10];
+} board_t;
 
 #endif
