@@ -2,6 +2,7 @@
 #include "TM4C123.h" // device headers
 #include "config.h"
 #include "utils.h"
+#include "ship.h"
 
 void uart_init(void) {
     /* Enable clocks for UART0 and GPIO Port A */
@@ -42,10 +43,10 @@ void UART0_Handler(void) {
     uint8_t data = simple_read_character();
     switch (data) {
     case LEFT:
-        // ship movement
+        ship_move_left(&ship);
         break;
     case RIGHT:
-        // ship movement
+        ship_move_right(&ship);
         break;
     case SPACE:
         // bullet logic
