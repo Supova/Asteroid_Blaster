@@ -7,6 +7,7 @@
 
 int main() {
     uart_init();  
+    delay(100000);
 
     output_string(prompt_game_welcome);
     output_string(prompt_game_rules);
