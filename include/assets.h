@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+// Coordinate system: x = column (horizontal), y = row (vertical)
+
 typedef struct position {
     uint8_t x;
     uint8_t y;
@@ -24,7 +26,7 @@ typedef struct asteroid {
 } asteroid_t;
 
 typedef struct ship {
-    uint8_t x;
+    uint8_t x; 
     uint8_t y;
 } ship_t;
 

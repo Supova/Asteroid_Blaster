@@ -2,9 +2,11 @@
 #include "render.h"
 #include "config.h"
 #include "utils.h"
+#include "ship.h"
 
 void init_board(void) {
     output_string(BOARD);
+    ship_draw(SHIP_SPAWN_Y, SHIP_SPAWN_X);
 }
 
 void start_game(void) {
