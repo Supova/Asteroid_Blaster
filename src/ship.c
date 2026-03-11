@@ -15,7 +15,7 @@ void ship_erase(uint32_t y, uint32_t x) {
 }
 
 void ship_move_left(volatile ship_t* ship) {
-  if (ship->x > PLAYABLE_MIN_COL) {
+  if (ship->x > PLAYABLE_MIN_X) {
     ship_erase(ship->y, ship->x);
     (ship->x)--;
     ship_draw(ship->y, ship->x);
@@ -23,7 +23,7 @@ void ship_move_left(volatile ship_t* ship) {
 }
 
 void ship_move_right(volatile ship_t* ship) {
-  if (ship->x < PLAYABLE_MAX_COL) {
+  if (ship->x < PLAYABLE_MAX_X) {
     ship_erase(ship->y, ship->x);
     (ship->x)++;
     ship_draw(ship->y, ship->x);
