@@ -5,7 +5,6 @@
 
 void output_character(char c);
 void output_string(const char *str);
-void cursor_goto(uint32_t row, uint32_t col);
-
+void cursor_goto(uint32_t y, uint32_t x);
 
 #endif

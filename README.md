@@ -14,3 +14,9 @@ Terminal-based asteroid blaster game for TM4C123GH6PM microcontroller
 - TivaC MCU (TM4c123GH6PM)
 - LCD
 - Buttons
+
+## Project Stages
+- Stage 1: terminal-based game
+- Stage 2: hardware-based game
+- Stage 3: compile and flash without Keil 
+- Stage 4: port to STM32
