@@ -1,36 +1,6 @@
 #include <stdint.h>
 #include "TM4C123.h"
 #include "utils.h"
-// Globals
-volatile board_t game_board;
-
-const char *BOARD = " -------------------- \n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    " -------------------- ";
-
-
 
 // Function definitions -----------------------------------------------------------------------
 
@@ -78,4 +48,8 @@ uint32_t string2int(char *string) {
         index++;
     }
     return total;
+}
+
+uint32_t get_random_seed() {
+    return TIMER0->TAR; // Use current timer value as seed
 }

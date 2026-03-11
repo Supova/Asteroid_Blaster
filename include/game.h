@@ -2,6 +2,9 @@
 #define GAME_H
 
 #include <stdint.h>
+#include "assets.h"
+
+extern volatile board_t game_board;
 
 /**
  * @brief Initialize the game board display with ship
