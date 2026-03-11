@@ -12,7 +12,33 @@ const char *initial_pos = "\x1B[11;11H";
 const char *hide_cursor = "\x1B[?25l";
 const char *show_cursor = "\x1B[?25h";
 
-// Prompts and board
+// Board and prompt
+const char *BOARD = " -------------------- \n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    "|                    |\n\r"
+                    " -------------------- ";
+                    
 const char *prompt_game_welcome = "\n\rWelcome to Asteroid Blaster!\n\r"
                                   "Can you survive by destroying incoming "
                                   "asteroids and save your crew?\n\r\n\r";

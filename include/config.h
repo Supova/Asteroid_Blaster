@@ -1,6 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+// Game parameters
 // all #defines and string constants (BOARD, prompts, macros)
 
 //--------------------MACROS--------------------------------------------------------------------------------------
@@ -25,16 +26,20 @@
 #define GO_LEFT 0x4
 #define GO_RIGHT 0x1
 
-// Rows and Columns start at 1, not 0
-#define ROW_OUT_OF_BOUNDS_LL 1
-#define ROW_OUT_OF_BOUNDS_UL 25
-#define COL_OUT_OF_BOUNDS_LL 1
-#define COL_OUT_OF_BOUNDS_UL 22
+// Playable area boundaries (1-indexed)
+#define PLAYABLE_MIN_Y 2
+#define PLAYABLE_MAX_Y 24
+#define PLAYABLE_MIN_X 2
+#define PLAYABLE_MAX_X 21
 
-#define ROW_IN_BOUNDS_LL 2
-#define ROW_IN_BOUNDS_UL 24
-#define COL_IN_BOUNDS_LL 2
-#define COL_IN_BOUNDS_UL 21
+#define SHIP_CHAR 'A'
+#define SHIP_SPAWN_Y 24
+#define SHIP_SPAWN_X 11
+#define SHIP_MAX_HEALTH 3
+
+#define MAX_NUM_ASTEROIDS 10
+
+#define STARTING_SPEED 0xF42400
 
 // Escape sequences
 extern const char *last_pos;
@@ -48,7 +53,8 @@ extern const char *initial_pos;
 extern const char *hide_cursor;
 extern const char *show_cursor;
 
-// Prompts and board
+// Board and prompts
+extern const char *BOARD;
 extern const char *prompt_game_welcome;
 extern const char *prompt_game_beginning;
 extern const char *prompt_game_rules ;
