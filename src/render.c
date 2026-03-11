@@ -14,14 +14,14 @@ void output_string(const char *str) {
     // Function doesn't return until ALL characters are sent
 }
 
-void cursor_goto(uint32_t row, uint32_t col) {
+void cursor_goto(uint32_t y, uint32_t x) {
     char buf[12];
     output_character('\x1B');
     output_character('[');
-    int2string((uint32_t)row, buf);
+    int2string((uint32_t)y, buf);
     output_string(buf);
     output_character(';');
-    int2string((uint32_t)col, buf);
+    int2string((uint32_t)x, buf);
     output_string(buf);
     output_character('H');
 }

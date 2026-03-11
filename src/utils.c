@@ -1,38 +1,12 @@
 #include <stdint.h>
 #include "TM4C123.h"
 #include "utils.h"
-// Globals
-volatile struct board game_board;
-
-const char *BOARD = " -------------------- \n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    "|                    |\n\r"
-                    " -------------------- ";
-
-
 
 // Function definitions -----------------------------------------------------------------------
+
+void delay(volatile uint32_t seconds){
+    for (volatile uint32_t i = 0; i < seconds; i++);
+}
 
 uint8_t simple_read_character(void) { 
     return (uint8_t)(UART0->DR & 0xFF); 
@@ -74,4 +48,8 @@ uint32_t string2int(char *string) {
         index++;
     }
     return total;
+}
+
+uint32_t get_random_seed() {
+    return TIMER0->TAR; // Use current timer value as seed
 }
