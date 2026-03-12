@@ -6,12 +6,12 @@
 
 void asteroid_draw(uint32_t y, uint32_t x) {
     cursor_goto(y, x);
-    output_character('O');
+    output_string(ASTEROID_SYMBOL);
 }
 
 void asteroid_erase(uint32_t y, uint32_t x) {
     cursor_goto(y, x);
-    output_character(' ');
+    output_string(BLANK);
 }
 
 void asteroid_move_down(volatile asteroid_t *asteroid) {
