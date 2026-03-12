@@ -1,12 +1,12 @@
 // set compiler include path to have "include"
+#include "TM4C123.h"
+#include "asteroid.h"
 #include "config.h"
 #include "game.h"
 #include "render.h"
 #include "timer.h"
 #include "uart.h"
 #include "utils.h"
-#include "asteroid.h"
-#include "TM4C123.h"
 
 int main() {
     uart_init();
@@ -24,13 +24,13 @@ int main() {
     timer_init();
     uart_interrupt_init();
 
-    __enable_irq();  // put this in handlers instead
+    __enable_irq(); // put this in handlers instead
     start_game();
 
     while (1) {
         if (timer_ticked) {
             asteroid_move_all_down(&game_board);
-             timer_ticked = false;
+            timer_ticked = false;
         }
     }
 }

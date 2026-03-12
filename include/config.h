@@ -11,6 +11,7 @@
 #define BEGINNING_OF_LINE '\r'
 
 #define BLANK " "
+#define SPACE ' '
 
 #define UP 'w'
 #define DOWN 's'
@@ -32,6 +33,7 @@
 #define PLAYABLE_MAX_X 21
 
 #define SHIP_SYMBOL "A"
+#define SHIP_HEIGHT 1
 #define SHIP_SPAWN_Y 24
 #define SHIP_SPAWN_X 11
 #define SHIP_MAX_HEALTH 3
