@@ -42,7 +42,7 @@
 #define MAX_NUM_ASTEROIDS 10
 
 #define BULLET_SYMBOL "|"
-#define MAX_NUM_BULLETS 10
+#define MAX_NUM_BULLETS 20 // does it make sense to keep it here?
 
 #define STARTING_SPEED 0xF42400
 
