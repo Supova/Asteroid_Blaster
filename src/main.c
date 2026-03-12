@@ -7,6 +7,7 @@
 #include "timer.h"
 #include "uart.h"
 #include "utils.h"
+#include "bullet.h"
 
 int main() {
     uart_init();
@@ -30,6 +31,7 @@ int main() {
     while (1) {
         if (timer_ticked) {
             asteroid_move_all_down(&game_board);
+            bullet_move_all_up(&game_board);
             timer_ticked = false;
         }
     }
