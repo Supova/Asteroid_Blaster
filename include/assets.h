@@ -33,6 +33,7 @@ typedef struct ship {
 typedef struct board {
     bullet_t bullets[10];
     asteroid_t asteroids[10];
+    uint8_t bullet_count;
 } board_t;
 
 #endif
