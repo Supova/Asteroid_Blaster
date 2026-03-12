@@ -10,8 +10,7 @@
 #define CLEAR_SCREEN '\f'
 #define BEGINNING_OF_LINE '\r'
 
-#define BULLET '|'
-#define SPACE ' '
+#define BLANK " "
 
 #define UP 'w'
 #define DOWN 's'
@@ -32,12 +31,16 @@
 #define PLAYABLE_MIN_X 2
 #define PLAYABLE_MAX_X 21
 
-#define SHIP_CHAR 'A'
+#define SHIP_SYMBOL "A"
 #define SHIP_SPAWN_Y 24
 #define SHIP_SPAWN_X 11
 #define SHIP_MAX_HEALTH 3
 
+#define ASTEROID_SYMBOL "O"
 #define MAX_NUM_ASTEROIDS 10
+
+#define BULLET_SYMBOL "|"
+#define MAX_NUM_BULLETS 10
 
 #define STARTING_SPEED 0xF42400
 
