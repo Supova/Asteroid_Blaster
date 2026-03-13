@@ -3,6 +3,9 @@
 #include "config.h"
 #include "utils.h"
 #include "ship.h"
+#include "assets.h"
+#include "bullet.h"
+#include "game.h"
 
 void uart_init(void) {
     /* Enable clocks for UART0 and GPIO Port A */
@@ -38,9 +41,11 @@ void uart_interrupt_init(void) {
     __enable_irq();                  // Enable global interrupts
 }
 
+// * TODO: refactor
 void UART0_Handler(void) {
     UART0->ICR = (1 << 4);
     uint8_t data = simple_read_character();
+     __disable_irq();
     switch (data) {
     case LEFT:
         ship_move_left(&ship);
@@ -49,9 +54,10 @@ void UART0_Handler(void) {
         ship_move_right(&ship);
         break;
     case SPACE:
-        // bullet logic
+        bullet_spawn(&game_board, ship.y - SHIP_HEIGHT, ship.x);
         break;
     default:
         break;
     }
+    __enable_irq();
 }
