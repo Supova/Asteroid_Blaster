@@ -5,6 +5,7 @@
 #include "assets.h"
 
 extern volatile board_t game_board;
+extern volatile uint8_t score;
 
 /**
  * @brief Initialize the game board display with ship
@@ -21,5 +22,7 @@ void init_board(void);
  * and positions cursor at starting location.
  */
 void start_game(void);
+
+void game_over(void);
 
 #endif

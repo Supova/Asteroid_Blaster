@@ -1,6 +1,8 @@
-#include "config.h"
 #include "asteroid.h"
 #include "assets.h"
+#include "collision.h"
+#include "config.h"
+#include "game.h"
 #include "render.h"
 #include "utils.h"
 
@@ -16,6 +18,8 @@ void asteroid_erase(uint32_t y, uint32_t x) {
 
 void asteroid_move_down(volatile asteroid_t *asteroid) {
     asteroid_out_of_bounds_check(asteroid);
+    collision_check_with_bullet_and_asteroid(&game_board, asteroid);
+    // ! after game over, asteroids still being drawn ---------------------------------
 
     if (asteroid->y < PLAYABLE_MAX_Y) {
         asteroid_erase(asteroid->y, asteroid->x);
@@ -25,9 +29,11 @@ void asteroid_move_down(volatile asteroid_t *asteroid) {
 }
 
 void asteroid_move_all_down(volatile board_t *game_board) {
+
     for (int i = 0; i < MAX_NUM_ASTEROIDS; i++) {
         if (game_board->asteroids[i].in_frame == true) {
             volatile asteroid_t *asteroid = &(game_board->asteroids[i]);
+            
             asteroid_move_down(asteroid);
         }
     }
@@ -44,10 +50,9 @@ position_t asteroid_position_randomize() {
     pos.x = (seed % (PLAYABLE_MAX_X - PLAYABLE_MIN_X + 1)) + PLAYABLE_MIN_X;
 
     // Random row: 2-8 (leave space for ship at bottom)
-    // seed rightshifted to decorrelate coordinates 
-    pos.y = ((seed >> 8) % ((PLAYABLE_MAX_Y/2) - PLAYABLE_MIN_Y - 3)) +
+    // seed rightshifted to decorrelate coordinates
+    pos.y = ((seed >> 8) % ((PLAYABLE_MAX_Y / 2) - PLAYABLE_MIN_Y - 3)) +
             PLAYABLE_MIN_Y;
-
 
     return pos;
 }
@@ -63,15 +68,10 @@ bool position_taken(position_t pos, volatile board_t *game_board) {
     return false;
 }
 
-// * Understanding volatile and variable declarations, does it need to match game_board?
+// * Understanding volatile and variable declarations, does it need to match
+// game_board?
 
 void asteroids_create(volatile board_t *game_board) {
-    // initialize all structs for a known state
-    for (uint8_t i = 0; i < MAX_NUM_ASTEROIDS; i++) {
-        game_board->asteroids[i].x = 0;
-        game_board->asteroids[i].y = 0;
-        game_board->asteroids[i].in_frame = false;
-    }
 
     // place random asteroids, ensuring no duplicates
     uint8_t asteroids_placed = 0;
@@ -88,10 +88,10 @@ void asteroids_create(volatile board_t *game_board) {
 }
 
 // max of 10 asteroids in frame
-// when it goes out of frame, create a new one 
-void asteroid_out_of_bounds_check(volatile asteroid_t *asteroid){
-        if (asteroid->y == PLAYABLE_MAX_Y){
-            asteroid_erase(asteroid->y, asteroid->x);
-            asteroid->in_frame = false;
-        }
+// when it goes out of frame, create a new one
+void asteroid_out_of_bounds_check(volatile asteroid_t *asteroid) {
+    if (asteroid->y == PLAYABLE_MAX_Y) {
+        asteroid_erase(asteroid->y, asteroid->x);
+        asteroid->in_frame = false;
+    }
 }
