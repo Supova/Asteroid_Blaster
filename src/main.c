@@ -8,6 +8,7 @@
 #include "uart.h"
 #include "utils.h"
 #include "bullet.h"
+#include "collision.h"
 
 int main() {
     uart_init();
@@ -30,9 +31,10 @@ int main() {
 
     while (1) {
         if (timer_ticked) {
-            asteroid_move_all_down(&game_board);
-            bullet_move_all_up(&game_board);
+            // collision check here
             timer_ticked = false;
+            bullet_move_all_up(&game_board);
+            asteroid_move_all_down(&game_board);
         }
     }
 }
