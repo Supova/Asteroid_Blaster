@@ -1,11 +1,14 @@
 #include "game.h"
-#include "render.h"
-#include "config.h"
-#include "utils.h"
-#include "ship.h"
 #include "asteroid.h"
+#include "config.h"
+#include "render.h"
+#include "ship.h"
+#include "timer.h"
+#include "utils.h"
+#include "TM4C123.h"
 
 volatile board_t game_board;
+volatile uint8_t score = 0;
 
 void init_board(void) {
     output_string(BOARD);
@@ -19,4 +22,15 @@ void start_game(void) {
     init_board();
     output_string(initial_pos);
     output_string(save_pos);
+}
+
+void game_over(void) {
+    timer_stop();
+    delay(100000);
+    output_character(CLEAR_SCREEN);
+    output_string(prompt_game_over);
+    char score_str[6];
+    int2string((uint32_t)score, score_str);
+    output_string(score_str);
+    output_string(show_cursor);
 }

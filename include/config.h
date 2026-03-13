@@ -39,10 +39,8 @@
 #define SHIP_MAX_HEALTH 3
 
 #define ASTEROID_SYMBOL "O"
-#define MAX_NUM_ASTEROIDS 10
-
 #define BULLET_SYMBOL "|"
-#define MAX_NUM_BULLETS 20 // does it make sense to keep it here?
+#define COLLISION_SYMBOL "X"
 
 #define STARTING_SPEED 0xF42400
 
