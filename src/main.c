@@ -33,8 +33,7 @@ int main() {
         if (timer_ticked) {
             // collision check here
             timer_ticked = false;
-            bullet_move_all_up(&game_board);
-            asteroid_move_all_down(&game_board);
-        }
+						asteroid_move_all_down(&game_board);
+						bullet_move_all_up(&game_board);        }
     }
 }

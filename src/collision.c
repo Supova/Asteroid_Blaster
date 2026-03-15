@@ -20,6 +20,8 @@ void collision_check_with_bullet_and_asteroid(board_t* game_board, asteroid_t *a
             if (asteroid->x == game_board->bullets[i].x && 
                 asteroid->y == game_board->bullets[i].y){
                 collision_draw(asteroid->y, asteroid->x);
+								asteroid->in_frame = false; 
+								game_board->bullets[i].in_frame = false; 
                 score++;
                 game_over();
                 return;
