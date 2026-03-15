@@ -29,7 +29,6 @@ void bullet_spawn(volatile board_t *board, uint8_t y, uint8_t x) {
 
 void bullet_move_up(volatile bullet_t *bullet) {
     bullet_out_of_bounds_check(bullet);
-
     if (bullet->y > PLAYABLE_MIN_Y) {
         bullet_erase(bullet->y, bullet->x);
         bullet->y--;

@@ -6,8 +6,8 @@
 
 // Coordinate system: x = column (horizontal), y = row (vertical)
 
-#define MAX_NUM_BULLETS 10 // does it make sense to keep it here?
-#define MAX_NUM_ASTEROIDS 10
+#define MAX_NUM_BULLETS 3 // does it make sense to keep it here?
+#define MAX_NUM_ASTEROIDS 3
 
 typedef struct position {
     uint8_t x;
