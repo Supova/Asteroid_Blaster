@@ -25,7 +25,9 @@ void start_game(void) {
 }
 
 void game_over(void) {
-    timer_stop();
+    // timer_stop();
+    timer_ticked = false;
+    TIMER0->CTL &= ~(1 << 0);
     delay(100000);
     output_character(CLEAR_SCREEN);
     output_string(prompt_game_over);

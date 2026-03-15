@@ -18,8 +18,6 @@ void asteroid_erase(uint32_t y, uint32_t x) {
 
 void asteroid_move_down(volatile asteroid_t *asteroid) {
     asteroid_out_of_bounds_check(asteroid);
-    collision_check_with_bullet_and_asteroid(&game_board, asteroid);
-    // ! after game over, asteroids still being drawn ---------------------------------
 
     if (asteroid->y < PLAYABLE_MAX_Y) {
         asteroid_erase(asteroid->y, asteroid->x);

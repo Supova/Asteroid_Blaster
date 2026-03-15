@@ -32,12 +32,12 @@
 #define PLAYABLE_MIN_X 2
 #define PLAYABLE_MAX_X 21
 
-#define SHIP_SYMBOL "A"
 #define SHIP_HEIGHT 1
 #define SHIP_SPAWN_Y 24
 #define SHIP_SPAWN_X 11
 #define SHIP_MAX_HEALTH 3
 
+#define SHIP_SYMBOL "A"
 #define ASTEROID_SYMBOL "O"
 #define BULLET_SYMBOL "|"
 #define COLLISION_SYMBOL "X"
