@@ -9,6 +9,7 @@
 #include "utils.h"
 #include "bullet.h"
 #include "collision.h"
+#include "ship.h"
 
 int main() {
     uart_init();
@@ -31,9 +32,14 @@ int main() {
 
     while (1) {
         if (timer_ticked) {
-            // collision check here
             timer_ticked = false;
-						asteroid_move_all_down(&game_board);
-						bullet_move_all_up(&game_board);        }
+            bullet_move_all_up(&game_board); 
+            delay(100000);
+            asteroid_move_all_down(&game_board);
+            delay(100000);
+            collision_check_with_bullet_and_asteroid(&game_board);
+            collision_check_with_ship_and_asteroid(ship, &game_board);
+            
+        }
     }
 }
