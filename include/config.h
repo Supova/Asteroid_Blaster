@@ -42,8 +42,6 @@
 #define BULLET_SYMBOL "|"
 #define COLLISION_SYMBOL "X"
 
-#define STARTING_SPEED 0xF42400
-
 // Escape sequences
 extern const char *last_pos;
 extern const char *move_up;
