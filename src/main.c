@@ -27,16 +27,17 @@ int main() {
     timer_init();
     uart_interrupt_init();
 
-    __enable_irq(); // put this in handlers instead
+    __enable_irq(); // Enable global interrupts
     start_game();
 
     while (1) {
         if (timer_ticked) {
             timer_ticked = false;
+            
             bullet_move_all_up(&game_board); 
-            delay(100000);
+            // delay(100000);
             asteroid_move_all_down(&game_board);
-            delay(100000);
+            // delay(100000);
             collision_check_with_bullet_and_asteroid(&game_board);
             collision_check_with_ship_and_asteroid(ship, &game_board);
             
