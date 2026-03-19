@@ -8,11 +8,9 @@ void output_character(char c) {
 }
 
 void output_string(const char *str) {
-     __disable_irq();
     while (*str) {
         output_character(*str++);
     } 
-    __enable_irq();
     // Function doesn't return until ALL characters are sent
 }
 
