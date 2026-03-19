@@ -1,3 +1,4 @@
+#include "TM4C123.h"
 #include "game.h"
 #include "asteroid.h"
 #include "config.h"
@@ -5,10 +6,11 @@
 #include "ship.h"
 #include "timer.h"
 #include "utils.h"
-#include "TM4C123.h"
+#include "gpio.h"
 
 volatile board_t game_board;
 volatile uint8_t score = 0;
+volatile bool game_over_flag = false;
 
 void init_board(void) {
     output_string(BOARD);
@@ -35,4 +37,5 @@ void game_over(void) {
     int2string((uint32_t)score, score_str);
     output_string(score_str);
     output_string(show_cursor);
+    blink_red_LED();
 }
