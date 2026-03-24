@@ -27,7 +27,6 @@ int main() {
     timer_init();
     uart_interrupt_init();
 
-    __enable_irq(); // Enable global interrupts
     start_game();
 
     while (1) {
@@ -41,19 +40,26 @@ int main() {
             // delay(100000);
             collision_check_with_bullet_and_asteroid(&game_board);
             collision_check_with_ship_and_asteroid(ship, &game_board);
-             __enable_irq();
+
+            __enable_irq();
+
+            if (game_board.asteroid_count == 0) {
+                game_over_flag = true;
+                game_over();
+            }
             // game over --> time stops
 
-        }
-
-        // ! check this -------------
-        if (game_over_flag) {
-            output_string(prompt_game_beginning);
-            response = ' ';
-            while (response != 'y') {
-                response = uart_read_blocking();
+           if (game_over_flag) {
+                // restart game
+                game_over_flag = false;
+                output_string(prompt_game_beginning);
+                response = ' ';
+                while (response != 'y') {
+                    response = uart_read_blocking();
+                }
+                timer_start();
+                start_game();
             }
-            start_game();
         }
     }
 }
