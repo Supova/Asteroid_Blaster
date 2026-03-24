@@ -7,7 +7,8 @@
 #define TimerA_EN (1<<0)
 #define TIMER_CFG_MODE_32BIT (0x0)
 #define TIMER_TAMR_PERIODIC (0x2)
-#define TIMER0A_PERIOD_TICKS (0xF42400) // 16M
+#define TIMER0A_PERIOD_TICKS (4000000) // 16M
+// #define TIMER0A_PERIOD_TICKS (0xF42400) // 16M
 #define TIMERA_TIME_OUT_INT_MASK (1 << 0)
 #define TIMERA_TIME_OUT_FLAG (1 << 0)
 
@@ -24,6 +25,10 @@ void timer_init(void) {
     TIMER0->IMR |= TIMERA_TIME_OUT_INT_MASK; // timeout is going to cause interrupt
     TIMER0->ICR |= TIMERA_TIME_OUT_FLAG; // clear timeout flag by setting bit(so interrupt can occur after setup)
     NVIC_EnableIRQ(TIMER0A_IRQn);
+    TIMER0->CTL |= TimerA_EN; 
+}
+
+void timer_start(void){
     TIMER0->CTL |= TimerA_EN; 
 }
 
