@@ -6,6 +6,7 @@
 #include "render.h"
 #include "utils.h"
 
+
 void asteroid_draw(uint32_t y, uint32_t x) {
     cursor_goto(y, x);
     output_string(ASTEROID_SYMBOL);
@@ -27,12 +28,13 @@ void asteroid_move_down(volatile asteroid_t *asteroid) {
 }
 
 void asteroid_move_all_down(volatile board_t *game_board) {
-
     for (int i = 0; i < MAX_NUM_ASTEROIDS; i++) {
-        if (game_board->asteroids[i].in_frame == true) {
+        if (game_board->asteroids[i].in_frame) {
             volatile asteroid_t *asteroid = &(game_board->asteroids[i]);
-            
             asteroid_move_down(asteroid);
+            if (!asteroid->in_frame){
+                game_board->asteroid_count--;
+            }
         }
     }
 }
@@ -56,7 +58,7 @@ position_t asteroid_position_randomize() {
 }
 
 bool position_taken(position_t pos, volatile board_t *game_board) {
-    for (int i = 0; i < MAX_NUM_ASTEROIDS; i++) {
+    for (int i = 0; i < MAX_NUM_ASTEROIDS; i++) { // check only for chunk size
         if (game_board->asteroids[i].in_frame &&
             game_board->asteroids[i].x == pos.x &&
             game_board->asteroids[i].y == pos.y) {
@@ -70,6 +72,7 @@ bool position_taken(position_t pos, volatile board_t *game_board) {
 // game_board?
 
 void asteroids_create(volatile board_t *game_board) {
+    game_board->asteroid_count = MAX_NUM_ASTEROIDS;
 
     // place random asteroids, ensuring no duplicates
     uint8_t asteroids_placed = 0;
@@ -91,5 +94,26 @@ void asteroid_out_of_bounds_check(volatile asteroid_t *asteroid) {
     if (asteroid->y == PLAYABLE_MAX_Y) {
         asteroid_erase(asteroid->y, asteroid->x);
         asteroid->in_frame = false;
+
     }
 }
+
+
+/*
+check if all asteroids are out of bounds
+good use of function pointers here if 
+we want to do some actions to all asteroids in loop
+
+*/
+
+
+/*
+After 8 ticks, generate a new set of asteroids (10)
+- how to keep track of ticks?
+whne generating new ones, fill the next 10 set
+do we need to make asteroids array a circular buffer?
+- need to keep track of write positon
+
+
+continue updating the asteroid implement with circbuff
+*/
