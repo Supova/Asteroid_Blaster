@@ -41,7 +41,11 @@ void bullet_move_all_up(volatile board_t *game_board) {
         if (game_board->bullets[i].in_frame == true) {
             volatile bullet_t *bullet = &(game_board->bullets[i]);
             bullet_move_up(bullet);
+						if (!bullet->in_frame){
+                game_board->bullet_count--;
+            }
         }
+				
     }
 }
 
