@@ -43,6 +43,9 @@ void collision_check_with_bullet_and_asteroid(volatile board_t *game_board) {
                 collision_draw(game_board->asteroids[j].y,
                                game_board->asteroids[j].x);
                 score++;
+								game_board->asteroid_count--;  
+								game_board->bullet_count--;
+
             }
         }
     }
