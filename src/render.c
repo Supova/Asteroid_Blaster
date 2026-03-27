@@ -5,6 +5,7 @@
 #include "asteroid.h"
 #include "ship.h"
 #include "config.h"
+#include "collision.h"
 
 void output_character(char c) {
     while (UART0->FR & (1 << 5)); // WAIT (block) while TX FIFO is full
@@ -73,6 +74,14 @@ void render_game_entities(volatile board_t *game_board, volatile ship_t ship) {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    // Draw collision markers
+    for (int k = 0; k < game_board->collision_count; k++) {
+        collision_draw(game_board->collisions[k].y, game_board->collisions[k].x);
+    }
+
+>>>>>>> Stashed changes
     // Draw ship
     ship_draw(ship.y, ship.x);
 }

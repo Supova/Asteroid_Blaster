@@ -56,11 +56,14 @@ uint8_t uart_read_blocking(void) {
     return (uint8_t)(UART0->DR & 0xFF);
 }
 
-// ? Why was this seperated out?
 void uart_interrupt_init(void) {
     UART0->ICR = UART_RXIC;      // Clear pending RX interrupts
     UART0->IM = UART_RXIM;       // Enable RX interrupt generation
     NVIC_EnableIRQ(UART0_IRQn); // Enable UART0 in CPU interrupt controller
+}
+
+void uart_interrupt_disable(void) {
+    UART0->IM = 0;       // Disable RX interrupt generation
 }
 
 // * TODO: refactor

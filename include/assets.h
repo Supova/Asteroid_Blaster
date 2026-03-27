@@ -49,6 +49,14 @@ typedef struct circbuff {
     uint8_t capacity;
 } circbuff_t;
 
+<<<<<<< Updated upstream
+=======
+typedef struct collision_event {
+    uint8_t x;
+    uint8_t y;
+} collision_event_t;
+
+>>>>>>> Stashed changes
 typedef struct board {
     bullet_t bullets[MAX_NUM_BULLETS];
     asteroid_t asteroids[MAX_NUM_ASTEROIDS];

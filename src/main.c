@@ -34,6 +34,15 @@ int main() {
             timer_ticked = false;
 
             __disable_irq();
+
+            // ! test
+            uint8_t index = game_board.collision_count;
+            for (int k = 0; k < index; k++) {
+                collision_erase(game_board.collisions[k].y, game_board.collisions[k].x);
+                game_board.collisions[game_board.collision_count].x = 0;
+                game_board.collisions[game_board.collision_count].y = 0;
+                game_board.collision_count--;
+            }
            
             bullet_move_all_up(&game_board);
             collision_check_with_bullet_and_asteroid(&game_board);
@@ -45,12 +54,12 @@ int main() {
             if (!ship_collision){
                 render_game_entities(&game_board, ship);
             }
+            __enable_irq();
 
             // Update counts based on actual active entities
             game_board.bullet_count = count_active_bullets(&game_board);
             game_board.asteroid_count = count_active_asteroids(&game_board);
 
-            __enable_irq();
 
             if (game_board.asteroid_count == 0 && !game_over_flag) {
                 game_over_flag = true;
@@ -64,9 +73,11 @@ int main() {
                 output_character(CLEAR_SCREEN);
                 output_string(prompt_game_beginning);
                 response = ' ';
+                __disable_irq();
                 while (response != 'y') {
-                    response = uart_read_blocking();
+                    response = uart_read_blocking(); // blocking = polling
                 }
+                 __enable_irq();
                 timer_start();
                 start_game();
             }
