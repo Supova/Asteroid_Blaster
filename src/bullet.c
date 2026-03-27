@@ -32,7 +32,6 @@ void bullet_move_up(volatile bullet_t *bullet) {
     if (bullet->y > PLAYABLE_MIN_Y) {
         bullet_erase(bullet->y, bullet->x);
         bullet->y--;
-        bullet_draw(bullet->y, bullet->x);
     }
 }
 
