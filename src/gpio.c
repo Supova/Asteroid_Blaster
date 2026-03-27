@@ -9,7 +9,7 @@ void blink_red_LED(void) {
     GPIOF->DIR |= RED_LED;
     GPIOF->DEN |= RED_LED;
 
-    static uint8_t blink_count = 6;
+    uint8_t blink_count = 6;
     while (blink_count--) {
         GPIOF->DATA ^= RED_LED;
         delay(900000);
