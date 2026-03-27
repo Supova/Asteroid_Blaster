@@ -31,9 +31,6 @@ void asteroid_move_all_down(volatile board_t *game_board) {
         if (game_board->asteroids[i].in_frame) {
             volatile asteroid_t *asteroid = &(game_board->asteroids[i]);
             asteroid_move_down(asteroid);
-            if (!asteroid->in_frame){
-                game_board->asteroid_count--;
-            }
         }
     }
 }
