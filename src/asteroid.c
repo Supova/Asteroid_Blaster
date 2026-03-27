@@ -23,7 +23,6 @@ void asteroid_move_down(volatile asteroid_t *asteroid) {
     if (asteroid->y < PLAYABLE_MAX_Y) {
         asteroid_erase(asteroid->y, asteroid->x);
         asteroid->y++;
-        asteroid_draw(asteroid->y, asteroid->x);
     }
 }
 
