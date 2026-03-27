@@ -7,6 +7,7 @@
 #include "ship.h"
 #include "timer.h"
 #include "utils.h"
+#include "uart.h"
 
 volatile board_t game_board;
 volatile uint8_t score = 0;
@@ -30,6 +31,7 @@ void init_board(void) {
 }
 
 void start_game(void) {
+    uart_interrupt_init(); // ! test
     output_character(CLEAR_SCREEN);
     output_string(hide_cursor);
     init_board();
@@ -45,6 +47,7 @@ state needs to be "fresh"
 */
 void game_over(void) {
     timer_stop();
+    uart_interrupt_disable();
     delay(100000); // ? what is this for?
     output_character(CLEAR_SCREEN);
     output_string(prompt_game_over);
