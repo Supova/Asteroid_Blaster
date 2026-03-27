@@ -1,6 +1,10 @@
 #include "TM4C123.h"
 #include "render.h"
 #include "utils.h"
+#include "bullet.h"
+#include "asteroid.h"
+#include "ship.h"
+#include "config.h"
 
 void output_character(char c) {
     while (UART0->FR & (1 << 5)); // WAIT (block) while TX FIFO is full
@@ -50,6 +54,25 @@ void cursor_goto(uint32_t y, uint32_t x) {
     
     buf[index++] = 'H';
     buf[index] = '\0';
-    
+
     output_string(buf);  // Single atomic call
+}
+
+void render_game_entities(volatile board_t *game_board, volatile ship_t ship) {
+    // Draw all active bullets
+    for (int i = 0; i < MAX_NUM_BULLETS; i++) {
+        if (game_board->bullets[i].in_frame) {
+            bullet_draw(game_board->bullets[i].y, game_board->bullets[i].x);
+        }
+    }
+
+    // Draw all active asteroids
+    for (int j = 0; j < MAX_NUM_ASTEROIDS; j++) {
+        if (game_board->asteroids[j].in_frame) {
+            asteroid_draw(game_board->asteroids[j].y, game_board->asteroids[j].x);
+        }
+    }
+
+    // Draw ship
+    ship_draw(ship.y, ship.x);
 }

@@ -25,7 +25,7 @@ void collision_check_with_ship_and_asteroid(volatile ship_t ship,
 }
 
 void collision_check_with_bullet_and_asteroid(volatile board_t *game_board) {
-    for (int i = 0; i < game_board->bullet_count; i++) {
+    for (int i = 0; i < MAX_NUM_BULLETS; i++) {
         for (int j = 0; j < MAX_NUM_ASTEROIDS; j++) {
             if (game_board->bullets[i].in_frame &&
                 game_board->asteroids[j].in_frame &&
