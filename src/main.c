@@ -30,20 +30,23 @@ int main() {
     start_game();
 
     while (1) {
-        if (timer_ticked) {
+        if (timer_ticked) { // interrupt happening here, thread safety
             timer_ticked = false;
 
             __disable_irq();
+           
             bullet_move_all_up(&game_board);
-            // delay(100000);
-            asteroid_move_all_down(&game_board);
-            // delay(100000);
             collision_check_with_bullet_and_asteroid(&game_board);
+
+            asteroid_move_all_down(&game_board);
+            collision_check_with_bullet_and_asteroid(&game_board);
+
             collision_check_with_ship_and_asteroid(ship, &game_board);
+            render_game_entities(&game_board, ship);
 
             __enable_irq();
 
-            if (game_board.asteroid_count == 0) {
+            if (game_board.asteroid_count == 0 && !game_over_flag) {
                 game_over_flag = true;
                 game_over();
             }
