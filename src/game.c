@@ -18,6 +18,15 @@ void init_board(void) {
     ship.y = SHIP_SPAWN_Y;
     ship_draw(ship.y, ship.x);
     asteroids_create(&game_board);
+    // bullet refresh
+     for (int i = 0; i < MAX_NUM_BULLETS; i++) {
+         game_board.bullets[i].id       = 0;
+         game_board.bullets[i].x        = 0;
+         game_board.bullets[i].y        = 0;
+         game_board.bullets[i].in_frame = false;
+    }
+
+    game_board.collision_count = 0;
 }
 
 void start_game(void) {
