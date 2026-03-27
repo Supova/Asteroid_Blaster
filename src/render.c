@@ -73,6 +73,23 @@ void render_game_entities(volatile board_t *game_board, volatile ship_t ship) {
         }
     }
 
+    // Draw and decay collision markers, compact array
+    uint8_t write_idx = 0;
+    for (int i = 0; i < game_board->collision_count; i++) {
+        if (game_board->collisions[i].duration > 0) {
+            cursor_goto(game_board->collisions[i].y, game_board->collisions[i].x);
+            output_string(COLLISION_SYMBOL);
+            game_board->collisions[i].duration--;
+
+            // Compact: move active collision to write position
+            if (write_idx != i) {
+                game_board->collisions[write_idx] = game_board->collisions[i];
+            }
+            write_idx++;
+        }
+    }
+    game_board->collision_count = write_idx;  // Update count to remaining active collisions
+
     // Draw ship
     ship_draw(ship.y, ship.x);
 }
