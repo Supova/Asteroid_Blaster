@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include "TM4C123.h"
 #include "utils.h"
+#include "assets.h"
 
 // Function definitions -----------------------------------------------------------------------
 
@@ -52,4 +53,24 @@ uint32_t string2int(char *string) {
 
 uint32_t get_random_seed() {
     return TIMER0->TAR; // Use current timer value as seed
+}
+
+uint8_t count_active_bullets(volatile board_t *game_board) {
+    uint8_t count = 0;
+    for (int i = 0; i < MAX_NUM_BULLETS; i++) {
+        if (game_board->bullets[i].in_frame) {
+            count++;
+        }
+    }
+    return count;
+}
+
+uint8_t count_active_asteroids(volatile board_t *game_board) {
+    uint8_t count = 0;
+    for (int i = 0; i < MAX_NUM_ASTEROIDS; i++) {
+        if (game_board->asteroids[i].in_frame) {
+            count++;
+        }
+    }
+    return count;
 }
