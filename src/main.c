@@ -10,6 +10,9 @@
 #include "timer.h"
 #include "uart.h"
 #include "utils.h"
+#include "uart.h"
+
+#define UART_RXIC (1 << 4)
 
 int main() {
     uart_init();
@@ -25,12 +28,35 @@ int main() {
     }
 
     timer_init();
-    uart_interrupt_init();
+    // uart_interrupt_init();
 
     start_game();
 
     while (1) {
         if (timer_ticked) { // interrupt happening here, thread safety
+            // timer =  0
+
+            // user input
+            uint8_t data = uart_read_blocking();
+            UART0->ICR = UART_RXIC; // read first and then clear
+
+            switch (data) {
+            case LEFT:
+                ship_move_left(&ship);
+                break;
+            case RIGHT:
+                ship_move_right(&ship);
+                break;
+            case SPACE:
+                bullet_spawn(&game_board, ship.y - SHIP_HEIGHT, ship.x);
+                break;
+            default:
+                break;
+            }
+            // user pressed key to move ship
+            // logic
+            //rendering
+
             timer_ticked = false;
 
             __disable_irq();
@@ -71,5 +97,6 @@ int main() {
                 start_game();
             }
         }
+        // timer = ?
     }
 }
