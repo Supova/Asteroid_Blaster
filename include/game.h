@@ -7,6 +7,7 @@
 extern volatile board_t game_board;
 extern volatile uint8_t score;
 extern volatile bool game_over_flag;
+extern uint8_t asteroid_arr_index;
 
 /**
  * @brief Initialize the game board display with ship

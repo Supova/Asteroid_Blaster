@@ -11,6 +11,8 @@
 volatile board_t game_board;
 volatile uint8_t score = 0;
 volatile bool game_over_flag = false;
+uint8_t asteroid_arr_index = 0;
+
 
 void init_board(void) {
     output_string(BOARD);
@@ -18,6 +20,8 @@ void init_board(void) {
     ship.y = SHIP_SPAWN_Y;
     ship_draw(ship.y, ship.x);
     asteroids_create(&game_board);
+
+
     // bullet refresh
      for (int i = 0; i < MAX_NUM_BULLETS; i++) {
          game_board.bullets[i].id       = 0;
