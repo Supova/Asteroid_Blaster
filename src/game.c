@@ -3,7 +3,13 @@
 #include "asteroid.h"
 #include "config.h"
 #include "gpio.h"
+#include "TM4C123.h"
+#include "asteroid.h"
+#include "config.h"
+#include "gpio.h"
 #include "render.h"
+#include "ship.h"
+#include "timer.h"
 #include "ship.h"
 #include "timer.h"
 #include "utils.h"
@@ -11,11 +17,12 @@
 volatile board_t game_board;
 volatile uint8_t score = 0;
 volatile bool game_over_flag = false;
-uint8_t asteroid_arr_index = 0;
-
 
 void init_board(void) {
     output_string(BOARD);
+    ship.x = SHIP_SPAWN_X;
+    ship.y = SHIP_SPAWN_Y;
+    ship_draw(ship.y, ship.x);
     ship.x = SHIP_SPAWN_X;
     ship.y = SHIP_SPAWN_Y;
     ship_draw(ship.y, ship.x);

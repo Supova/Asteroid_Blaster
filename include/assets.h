@@ -10,6 +10,10 @@
 #define MAX_NUM_ASTEROIDS 10
 #define MAX_NUM_ENTITY 30
 
+#define MAX_NUM_BULLETS 20 // does it make sense to keep it here?
+#define MAX_NUM_ASTEROIDS 10
+#define MAX_NUM_ENTITY 30
+
 typedef struct position {
     uint8_t x;
     uint8_t y;
@@ -24,10 +28,18 @@ typedef struct bullet {
 
 typedef struct asteroid {
   //  uint8_t id;
+  //  uint8_t id;
     uint8_t x;
     uint8_t y;
     bool in_frame;
 } asteroid_t;
+
+typedef struct entity {
+    uint8_t id;
+    uint8_t x;
+    uint8_t y;
+    bool in_frame;
+} entity_t;
 
 typedef struct entity {
     uint8_t id;

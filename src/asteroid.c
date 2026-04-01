@@ -3,17 +3,23 @@
 #include "collision.h"
 #include "config.h"
 #include "game.h"
+#include "collision.h"
+#include "config.h"
+#include "game.h"
 #include "render.h"
 #include "utils.h"
+
 
 
 void asteroid_draw(uint32_t y, uint32_t x) {
     cursor_goto(y, x);
     output_string(ASTEROID_SYMBOL);
+    output_string(ASTEROID_SYMBOL);
 }
 
 void asteroid_erase(uint32_t y, uint32_t x) {
     cursor_goto(y, x);
+    output_string(BLANK);
     output_string(BLANK);
 }
 
@@ -31,6 +37,9 @@ void asteroid_move_all_down(volatile board_t *game_board) {
         if (game_board->asteroids[i].in_frame) {
             volatile asteroid_t *asteroid = &(game_board->asteroids[i]);
             asteroid_move_down(asteroid);
+            if (!asteroid->in_frame){
+                game_board->asteroid_count--;
+            }
         }
     }
 }
@@ -62,6 +71,7 @@ bool position_taken(position_t pos, volatile board_t *game_board) {
 
 
 void asteroids_create(volatile board_t *game_board) {
+    game_board->asteroid_count = MAX_NUM_ASTEROIDS;
     game_board->asteroid_count = MAX_NUM_ASTEROIDS;
 
     // place random asteroids, ensuring no duplicates
