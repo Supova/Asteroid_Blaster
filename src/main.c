@@ -41,13 +41,13 @@ int main() {
             asteroid_move_all_down(&game_board);
             collision_check_with_bullet_and_asteroid(&game_board);
 
-            bool ship_collision = collision_check_with_ship_and_asteroid(ship, &game_board);
+            bool ship_collision =
+                collision_check_with_ship_and_asteroid(ship, &game_board);
 
             if (!ship_collision) {
                 render_game_entities(&game_board, ship);
             }
 
-          
             // Update counts based on actual active entities
             game_board.bullet_count = count_active_bullets(&game_board);
             game_board.asteroid_count = count_active_asteroids(&game_board);
@@ -68,7 +68,7 @@ int main() {
                 while (response != 'y') {
                     response = uart_read_blocking();
                 }
-                
+
                 timer_start();
                 timer0_period_ticks /= 2;
                 timer_change_speed(timer0_period_ticks);
