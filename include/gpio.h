@@ -3,12 +3,9 @@
 
 #define PORTF (1u << 5)
 #define RED_LED (1u << 1)
-#define SW1 (1u << 0)
+#define SW1 (1u << 4)
 
-// blink led
 void blink_red_LED(void);
-
-// sw1 for restart game
 void gpio_interrupt_init(void);
 void GPIOF_Handler(void);
 

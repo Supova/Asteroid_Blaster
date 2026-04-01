@@ -1,7 +1,6 @@
 #include <stddef.h>
 #include "circbuff.h"
 
-
 void circbuff_init(circbuff_t *cb){
     if (cb == NULL){
         return;
@@ -92,5 +91,3 @@ void circbuff_reset(circbuff_t *cb){
     cb->read = 0;
     cb->count = 0;
 }
-
-

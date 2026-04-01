@@ -51,6 +51,7 @@ __pycache__/
 # Other
 notes.md
 concepts.md
+CLAUDE.md
+.claude
 docs/commented_src_code
-
 # End of file
