@@ -1,15 +1,9 @@
+#include "TM4C123.h"
 #include "game.h"
-#include "TM4C123.h"
-#include "asteroid.h"
-#include "config.h"
-#include "gpio.h"
-#include "TM4C123.h"
 #include "asteroid.h"
 #include "config.h"
 #include "gpio.h"
 #include "render.h"
-#include "ship.h"
-#include "timer.h"
 #include "ship.h"
 #include "timer.h"
 #include "utils.h"
@@ -20,9 +14,6 @@ volatile bool game_over_flag = false;
 
 void init_board(void) {
     output_string(BOARD);
-    ship.x = SHIP_SPAWN_X;
-    ship.y = SHIP_SPAWN_Y;
-    ship_draw(ship.y, ship.x);
     ship.x = SHIP_SPAWN_X;
     ship.y = SHIP_SPAWN_Y;
     ship_draw(ship.y, ship.x);
@@ -48,12 +39,6 @@ void start_game(void) {
     output_string(save_pos);
 }
 
-/*
-ship position needs to be reset
-game board needs to be cleared both for asteroids and bullets
-score needs to be reet
-state needs to be "fresh"
-*/
 void game_over(void) {
     timer_stop();
     delay(100000); // ? what is this for?

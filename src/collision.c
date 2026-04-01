@@ -20,7 +20,6 @@ bool collision_check_with_ship_and_asteroid(volatile ship_t ship,
                 game_board->collision_count++;
             }
             game_over_flag = true;
-            // game_over();
             return true;
         }
     }

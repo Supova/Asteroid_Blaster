@@ -5,10 +5,6 @@
 #include "asteroid.h"
 #include "ship.h"
 #include "config.h"
-#include "bullet.h"
-#include "asteroid.h"
-#include "ship.h"
-#include "config.h"
 
 void output_character(char c) {
     while (UART0->FR & (1 << 5)); // WAIT (block) while TX FIFO is full
@@ -19,32 +15,7 @@ void output_string(const char *str) {
     while (*str) {
         output_character(*str++);
     } 
-    // Function doesn't return until ALL characters are sent
 }
-
-// void cursor_goto(uint32_t y, uint32_t x) {
-//   char buf[12];
-//   output_character('\x1B');
-//   output_character('[');
-//   int2string((uint32_t)y, buf);
-//   output_string(buf);
-//   output_character(';');
-//   int2string((uint32_t)x, buf);
-//   output_string(buf);
-//   output_character('H');
-// }
-
-// void cursor_goto(uint32_t y, uint32_t x) {
-//   char buf[12];
-//   output_character('\x1B');
-//   output_character('[');
-//   int2string((uint32_t)y, buf);
-//   output_string(buf);
-//   output_character(';');
-//   int2string((uint32_t)x, buf);
-//   output_string(buf);
-//   output_character('H');
-// }
 
 void cursor_goto(uint32_t y, uint32_t x) {
     char buf[20];
@@ -71,7 +42,7 @@ void cursor_goto(uint32_t y, uint32_t x) {
     buf[index++] = 'H';
     buf[index] = '\0';
 
-    output_string(buf);  // Single atomic call
+    output_string(buf);
 }
 
 void render_game_entities(volatile board_t *game_board, volatile ship_t ship) {

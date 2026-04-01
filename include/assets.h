@@ -6,11 +6,7 @@
 
 // Coordinate system: x = column (horizontal), y = row (vertical)
 
-#define MAX_NUM_BULLETS 20 // does it make sense to keep it here?
-#define MAX_NUM_ASTEROIDS 10
-#define MAX_NUM_ENTITY 30
-
-#define MAX_NUM_BULLETS 20 // does it make sense to keep it here?
+#define MAX_NUM_BULLETS 20
 #define MAX_NUM_ASTEROIDS 10
 #define MAX_NUM_ENTITY 30
 
@@ -20,26 +16,16 @@ typedef struct position {
 } position_t;
 
 typedef struct bullet {
-    uint8_t id;
     uint8_t x;
     uint8_t y;
     bool in_frame;
 } bullet_t;
 
 typedef struct asteroid {
-  //  uint8_t id;
-  //  uint8_t id;
     uint8_t x;
     uint8_t y;
     bool in_frame;
 } asteroid_t;
-
-typedef struct entity {
-    uint8_t id;
-    uint8_t x;
-    uint8_t y;
-    bool in_frame;
-} entity_t;
 
 typedef struct entity {
     uint8_t id;
