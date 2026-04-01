@@ -13,18 +13,10 @@
 #define BLANK " "
 #define SPACE ' '
 
-#define UP 'w'
-#define DOWN 's'
 #define LEFT 'a'
 #define RIGHT 'd'
 
 #define DELETE 0x08 // backspace
-#define Y 'Y'
-
-#define GO_UP 0x2
-#define GO_DOWN 0x8
-#define GO_LEFT 0x4
-#define GO_RIGHT 0x1
 
 // Playable area boundaries (1-indexed)
 #define PLAYABLE_MIN_Y 2
@@ -35,7 +27,6 @@
 #define SHIP_HEIGHT 1
 #define SHIP_SPAWN_Y 24
 #define SHIP_SPAWN_X 11
-#define SHIP_MAX_HEALTH 3
 
 #define SHIP_SYMBOL "A"
 #define ASTEROID_SYMBOL "O"
@@ -43,13 +34,7 @@
 #define COLLISION_SYMBOL "X"
 
 // Escape sequences
-extern const char *last_pos;
-extern const char *move_up;
-extern const char *move_down;
-extern const char *move_left;
-extern const char *move_right;
 extern const char *save_pos;
-extern const char *clear_display;
 extern const char *initial_pos;
 extern const char *hide_cursor;
 extern const char *show_cursor;
@@ -60,6 +45,5 @@ extern const char *prompt_game_welcome;
 extern const char *prompt_game_beginning;
 extern const char *prompt_game_rules ;
 extern const char *prompt_game_over;
-
 
 #endif

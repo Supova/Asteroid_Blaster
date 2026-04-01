@@ -1,15 +1,9 @@
 #include "asteroid.h"
 #include "assets.h"
-#include "collision.h"
-#include "config.h"
-#include "game.h"
-#include "collision.h"
 #include "config.h"
 #include "game.h"
 #include "render.h"
 #include "utils.h"
-
-
 
 void asteroid_draw(uint32_t y, uint32_t x) {
     cursor_goto(y, x);
@@ -69,9 +63,7 @@ bool position_taken(position_t pos, volatile board_t *game_board) {
     return false;
 }
 
-
 void asteroids_create(volatile board_t *game_board) {
-    game_board->asteroid_count = MAX_NUM_ASTEROIDS;
     game_board->asteroid_count = MAX_NUM_ASTEROIDS;
 
     // place random asteroids, ensuring no duplicates
@@ -82,8 +74,7 @@ void asteroids_create(volatile board_t *game_board) {
         if (!position_taken(new_pos, game_board)) {
             game_board->asteroids[asteroids_placed].x = new_pos.x;
             game_board->asteroids[asteroids_placed].y = new_pos.y;
-            // game_board->asteroids[asteroids_placed].in_frame = false; 
-            game_board->asteroids[asteroids_placed].in_frame = true; // make last 2/3 inactive
+            game_board->asteroids[asteroids_placed].in_frame = true;
             asteroids_placed++;
         }
     }
@@ -95,14 +86,3 @@ void asteroid_out_of_bounds_check(volatile asteroid_t *asteroid) {
         asteroid->in_frame = false;
     }
 }
-
-
-/*
-new levels: if asteroids go out of bounds without being hit, 
-    there is penalty
-increase speed for next levels
-
-
-*/
-
-
