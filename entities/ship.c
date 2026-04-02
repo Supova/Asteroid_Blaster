@@ -1,7 +1,7 @@
 #include "ship.h"
+#include "critical_section.h"
 #include "config.h"
-#include "render.h"
-#include "TM4C123.h"
+#include "uart_hal.h"
 
 volatile ship_t ship = {SHIP_SPAWN_X, SHIP_SPAWN_Y};
 
