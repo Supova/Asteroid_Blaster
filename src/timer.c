@@ -27,17 +27,13 @@ void timer_init(void) {
     TIMER0->CTL |= TimerA_EN; 
 }
 
-void timer_start(void){
-    TIMER0->CTL |= TimerA_EN; 
-}
-
 void timer_stop(void) {
     timer_ticked = false;
     TIMER0->CTL &= ~TimerA_EN;
 }
 
 void timer_change_speed(uint32_t timer0_period_ticks){
-    if (timer0_period_ticks == 0x00000050){
+    if (timer0_period_ticks <= 0x00000050){
         return;
     }
     TIMER0->CTL &= ~TimerA_EN; 

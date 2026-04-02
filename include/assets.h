@@ -4,12 +4,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-// Coordinate system: x = column (horizontal), y = row (vertical)
-
 #define MAX_NUM_BULLETS 20
 #define MAX_NUM_ASTEROIDS 10
-#define MAX_NUM_ENTITY 30
 
+// Coordinate system: x = column (horizontal), y = row (vertical)
 typedef struct position {
     uint8_t x;
     uint8_t y;
@@ -27,30 +25,14 @@ typedef struct asteroid {
     bool in_frame;
 } asteroid_t;
 
-typedef struct entity {
-    uint8_t id;
-    uint8_t x;
-    uint8_t y;
-    bool in_frame;
-} entity_t;
-
 typedef struct ship {
     uint8_t x;
     uint8_t y;
 } ship_t;
 
-typedef struct circbuff {
-    entity_t buffer[MAX_NUM_ENTITY];
-    uint8_t read;
-    uint8_t write;
-    uint8_t count;
-    uint8_t capacity;
-} circbuff_t;
-
 typedef struct collision_event {
     uint8_t x;
     uint8_t y;
-    uint8_t duration;  // Frames remaining to display
 } collision_event_t;
 
 typedef struct board {
@@ -62,4 +44,4 @@ typedef struct board {
     uint8_t collision_count;
 } board_t;
 
-#endif
+#endif /* ASSETS_H */

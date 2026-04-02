@@ -1,4 +1,3 @@
-// set compiler include path to have "include"
 #include "TM4C123.h"
 #include "asteroid.h"
 #include "bullet.h"
@@ -11,7 +10,7 @@
 #include "uart.h"
 #include "utils.h"
 
-int main() {
+int main(void) {
     uart_init();
     delay(100000);
 
@@ -19,7 +18,7 @@ int main() {
     output_string(prompt_game_rules);
     output_string(prompt_game_beginning);
 
-    char response = ' ';
+    uint8_t response = ' ';
     while (response != 'y') {
         response = uart_read_blocking();
     }
@@ -69,7 +68,6 @@ int main() {
                     response = uart_read_blocking();
                 }
 
-                timer_start();
                 timer0_period_ticks /= 2;
                 timer_change_speed(timer0_period_ticks);
 

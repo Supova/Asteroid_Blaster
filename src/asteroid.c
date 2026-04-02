@@ -1,5 +1,4 @@
 #include "asteroid.h"
-#include "assets.h"
 #include "config.h"
 #include "game.h"
 #include "render.h"
@@ -8,12 +7,10 @@
 void asteroid_draw(uint32_t y, uint32_t x) {
     cursor_goto(y, x);
     output_string(ASTEROID_SYMBOL);
-    output_string(ASTEROID_SYMBOL);
 }
 
 void asteroid_erase(uint32_t y, uint32_t x) {
     cursor_goto(y, x);
-    output_string(BLANK);
     output_string(BLANK);
 }
 
@@ -27,18 +24,15 @@ void asteroid_move_down(volatile asteroid_t *asteroid) {
 }
 
 void asteroid_move_all_down(volatile board_t *game_board) {
-    for (int i = 0; i < MAX_NUM_ASTEROIDS; i++) {
+    for (uint8_t i = 0; i < MAX_NUM_ASTEROIDS; i++) {
         if (game_board->asteroids[i].in_frame) {
             volatile asteroid_t *asteroid = &(game_board->asteroids[i]);
             asteroid_move_down(asteroid);
-            if (!asteroid->in_frame){
-                game_board->asteroid_count--;
-            }
         }
     }
 }
 
-position_t asteroid_position_randomize() {
+position_t asteroid_position_randomize(void) {
     position_t pos;
     uint32_t seed = get_random_seed();
 
@@ -47,13 +41,14 @@ position_t asteroid_position_randomize() {
 
     // Random row: 2-8 (leave space for ship at bottom)
     // seed rightshifted to decorrelate coordinates
-    pos.y = ((seed >> 8) % ((PLAYABLE_MAX_Y / 2) - PLAYABLE_MIN_Y - 3)) + PLAYABLE_MIN_Y;
+    pos.y = ((seed >> 8) % ((PLAYABLE_MAX_Y / 2) - PLAYABLE_MIN_Y - 3)) +
+            PLAYABLE_MIN_Y;
 
     return pos;
 }
 
 bool position_taken(position_t pos, volatile board_t *game_board) {
-    for (int i = 0; i < MAX_NUM_ASTEROIDS; i++) { 
+    for (uint8_t i = 0; i < MAX_NUM_ASTEROIDS; i++) {
         if (game_board->asteroids[i].in_frame &&
             game_board->asteroids[i].x == pos.x &&
             game_board->asteroids[i].y == pos.y) {

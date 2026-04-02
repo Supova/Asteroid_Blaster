@@ -1,4 +1,3 @@
-#include "TM4C123.h"
 #include "game.h"
 #include "asteroid.h"
 #include "config.h"
@@ -9,8 +8,9 @@
 #include "utils.h"
 
 volatile board_t game_board;
-volatile uint8_t score = 0;
+uint8_t score = 0;
 volatile bool game_over_flag = false;
+
 
 void init_board(void) {
     output_string(BOARD);
@@ -19,13 +19,11 @@ void init_board(void) {
     ship_draw(ship.y, ship.x);
     asteroids_create(&game_board);
 
-
     // bullet refresh
-     for (int i = 0; i < MAX_NUM_BULLETS; i++) {
-         game_board.bullets[i].id       = 0;
-         game_board.bullets[i].x        = 0;
-         game_board.bullets[i].y        = 0;
-         game_board.bullets[i].in_frame = false;
+    for (uint8_t i = 0; i < MAX_NUM_BULLETS; i++) {
+        game_board.bullets[i].x = 0;
+        game_board.bullets[i].y = 0;
+        game_board.bullets[i].in_frame = false;
     }
 
     game_board.collision_count = 0;
@@ -41,11 +39,13 @@ void start_game(void) {
 
 void game_over(void) {
     timer_stop();
-    delay(100000); // ? what is this for?
+    delay(100000);
     output_character(CLEAR_SCREEN);
     output_string(prompt_game_over);
+
     char score_str[6];
-    int2string((uint32_t)score, score_str);
+    int2string(score, score_str);
+    output_string("\n\rScore: ");
     output_string(score_str);
     output_string(show_cursor);
     blink_red_LED();

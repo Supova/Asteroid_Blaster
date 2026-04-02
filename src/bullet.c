@@ -13,7 +13,7 @@ void bullet_erase(uint32_t y, uint32_t x) {
 }
 
 void bullet_spawn(volatile board_t *board, uint8_t y, uint8_t x) {
-    for (int i = 0; i < MAX_NUM_BULLETS; i++) {
+    for (uint8_t i = 0; i < MAX_NUM_BULLETS; i++) {
         if (!board->bullets[i].in_frame) {
             board->bullets[i].x = x;
             board->bullets[i].y = y;
@@ -33,8 +33,8 @@ void bullet_move_up(volatile bullet_t *bullet) {
 }
 
 void bullet_move_all_up(volatile board_t *game_board) {
-    for (int i = 0; i < MAX_NUM_BULLETS; i++) {
-        if (game_board->bullets[i].in_frame == true) {
+    for (uint8_t i = 0; i < MAX_NUM_BULLETS; i++) {
+        if (game_board->bullets[i].in_frame) {
             volatile bullet_t *bullet = &(game_board->bullets[i]);
             bullet_move_up(bullet);
         }
