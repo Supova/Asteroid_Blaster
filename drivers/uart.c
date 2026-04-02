@@ -5,8 +5,6 @@
 #include "config.h"
 #include "game.h"
 #include "ship.h"
-#include "utils.h"
-
 /* UART0 clock, GPIO clock */
 #define UART0_EN (1 << 0)
 #define GPIOA_EN (1 << 0)
@@ -27,6 +25,8 @@
 #define UART_RX_FIFO_EMPTY (1 << 4)
 #define UART_RXIM (1 << 4)
 #define UART_RXIC (1 << 4)
+
+static uint8_t uart_fifo_read_char(void) { return (uint8_t)(UART0->DR & 0xFF); }
 
 void uart_init(void) {
     /* Enable clocks for UART0 and GPIO Port A */
@@ -62,7 +62,7 @@ void uart_interrupt_init(void) {
 }
 
 void UART0_Handler(void) {
-    uint8_t data = simple_read_character();
+    uint8_t data = uart_fifo_read_char();
     UART0->ICR = UART_RXIC; // read first and then clear
 
     switch (data) {

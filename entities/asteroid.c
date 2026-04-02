@@ -1,8 +1,8 @@
 #include "asteroid.h"
 #include "config.h"
 #include "game.h"
-#include "render.h"
-#include "utils.h"
+#include "uart_hal.h"
+#include "timer.h"
 
 void asteroid_draw(uint32_t y, uint32_t x) {
     cursor_goto(y, x);
@@ -34,7 +34,7 @@ void asteroid_move_all_down(volatile board_t *game_board) {
 
 position_t asteroid_position_randomize(void) {
     position_t pos;
-    uint32_t seed = get_random_seed();
+    uint32_t seed = timer_get_count();
 
     // Random column: 2-21  [formula: rand() % (max - min + 1) + min]
     pos.x = (seed % (PLAYABLE_MAX_X - PLAYABLE_MIN_X + 1)) + PLAYABLE_MIN_X;

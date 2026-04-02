@@ -9,6 +9,7 @@ extern volatile uint32_t timer0_period_ticks;
 void timer_init(void);
 void timer_stop(void);
 void timer_change_speed(uint32_t timer0_period_ticks);
+uint32_t timer_get_count(void);
 void TIMER0A_Handler(void);
 
 #endif /* TIMER_H */

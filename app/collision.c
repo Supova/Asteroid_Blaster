@@ -4,7 +4,7 @@
 #include "bullet.h"
 #include "config.h"
 #include "game.h"
-#include "render.h"
+#include "uart_hal.h"
 
 void collision_draw(uint32_t y, uint32_t x) {
     cursor_goto(y, x);

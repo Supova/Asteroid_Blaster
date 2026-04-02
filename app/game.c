@@ -2,7 +2,7 @@
 #include "asteroid.h"
 #include "config.h"
 #include "gpio.h"
-#include "render.h"
+#include "uart_hal.h"
 #include "ship.h"
 #include "timer.h"
 #include "utils.h"
