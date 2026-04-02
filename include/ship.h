@@ -11,4 +11,4 @@ void ship_erase(uint32_t y, uint32_t x);
 void ship_move_left(volatile ship_t* ship);
 void ship_move_right(volatile ship_t* ship);
 
-#endif
+#endif /* SHIP_H */

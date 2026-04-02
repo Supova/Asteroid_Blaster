@@ -9,4 +9,4 @@ void blink_red_LED(void);
 void gpio_interrupt_init(void);
 void GPIOF_Handler(void);
 
-#endif
+#endif /* GPIO_H */

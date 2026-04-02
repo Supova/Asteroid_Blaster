@@ -5,10 +5,7 @@
 // all #defines and string constants (BOARD, prompts, macros)
 
 //--------------------MACROS--------------------------------------------------------------------------------------
-#define TAB '\t'
-#define LINE_FEED '\n'
 #define CLEAR_SCREEN '\f'
-#define BEGINNING_OF_LINE '\r'
 
 #define BLANK " "
 #define SPACE ' '
@@ -34,10 +31,10 @@
 #define COLLISION_SYMBOL "X"
 
 // Escape sequences
-extern const char *save_pos;
-extern const char *initial_pos;
-extern const char *hide_cursor;
-extern const char *show_cursor;
+extern const char * const save_pos;
+extern const char * const initial_pos;
+extern const char * const hide_cursor;
+extern const char * const show_cursor;
 
 // Board and prompts
 extern const char *BOARD;
@@ -46,4 +43,4 @@ extern const char *prompt_game_beginning;
 extern const char *prompt_game_rules ;
 extern const char *prompt_game_over;
 
-#endif
+#endif /* CONFIG_H */
