@@ -3,7 +3,7 @@
 #include "asteroid.h"
 #include "bullet.h"
 #include "config.h"
-#include "game.h"
+#include "game.h"  // for score
 #include "uart_hal.h"
 
 void collision_draw(uint32_t y, uint32_t x) {
@@ -30,7 +30,6 @@ bool collision_check_with_ship_and_asteroid(volatile ship_t ship,
                     game_board->asteroids[i].y;
                 game_board->collision_count++;
             }
-            game_over_flag = true;
             return true;
         }
     }
@@ -64,6 +63,7 @@ void collision_check_with_bullet_and_asteroid(volatile board_t *game_board) {
                              game_board->bullets[i].x);
 
                 score++;
+                hits_this_level++;
             }
         }
     }

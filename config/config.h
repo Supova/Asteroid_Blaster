@@ -42,5 +42,7 @@ extern const char *prompt_game_welcome;
 extern const char *prompt_game_beginning;
 extern const char *prompt_game_rules ;
 extern const char *prompt_game_over;
+extern const char *prompt_level_complete;
+extern const char *prompt_restart;
 
 #endif /* CONFIG_H */
