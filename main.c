@@ -41,10 +41,10 @@ int main(void) {
             asteroid_move_all_down(&game_board);
             collision_check_with_bullet_and_asteroid(&game_board);
 
-            bool ship_collision =
+            bool ship_hit =
                 collision_check_with_ship_and_asteroid(ship, &game_board);
 
-            if (!ship_collision) {
+            if (!ship_hit) {
                 render_game_entities(&game_board, ship);
             }
 
@@ -54,25 +54,17 @@ int main(void) {
 
             hal_critical_exit();
 
-            if (game_board.asteroid_count == 0 && !game_over_flag) {
-                game_over_flag = true;
-            }
-
-            if (game_over_flag) {
-                game_over_flag = false;
+            if (ship_hit) {
+                // Asteroid hit the ship: game over, score resets on restart
                 game_over();
-
-                output_character(CLEAR_SCREEN);
-                output_string(prompt_game_beginning);
-                response = ' ';
-                while (response != 'y') {
-                    response = uart_read_blocking();
+            } else if (game_board.asteroid_count == 0) {
+                if (hits_this_level > 0) {
+                    // Player destroyed at least one asteroid: advance to next level
+                    next_level();
+                } else {
+                    // All asteroids escaped without the player hitting any: game over
+                    game_over();
                 }
-
-                timer0_period_ticks /= 2;
-                timer_change_speed(timer0_period_ticks);
-
-                start_game();
             }
         }
     }

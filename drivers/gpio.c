@@ -34,5 +34,4 @@ void gpio_interrupt_init(void) {
 
 void GPIOF_Handler(void) {
     GPIOF->ICR |= (1 << 4);
-    game_over_flag = true;
 }
