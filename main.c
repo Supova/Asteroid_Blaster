@@ -1,13 +1,14 @@
-#include "TM4C123.h"
 #include "asteroid.h"
 #include "bullet.h"
 #include "collision.h"
 #include "config.h"
+#include "critical_section.h"
 #include "game.h"
 #include "render.h"
 #include "ship.h"
 #include "timer.h"
 #include "uart.h"
+#include "uart_hal.h"
 #include "utils.h"
 
 int main(void) {
@@ -32,7 +33,7 @@ int main(void) {
         if (timer_ticked) {
             timer_ticked = false;
 
-            __disable_irq();
+            hal_critical_enter();
 
             bullet_move_all_up(&game_board);
             collision_check_with_bullet_and_asteroid(&game_board);
@@ -51,7 +52,7 @@ int main(void) {
             game_board.bullet_count = count_active_bullets(&game_board);
             game_board.asteroid_count = count_active_asteroids(&game_board);
 
-            __enable_irq();
+            hal_critical_exit();
 
             if (game_board.asteroid_count == 0 && !game_over_flag) {
                 game_over_flag = true;

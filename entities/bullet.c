@@ -1,6 +1,6 @@
 #include "bullet.h"
 #include "config.h"
-#include "render.h"
+#include "uart_hal.h"
 
 void bullet_draw(uint32_t y, uint32_t x) {
     cursor_goto(y, x);

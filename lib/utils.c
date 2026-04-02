@@ -1,5 +1,4 @@
 #include "utils.h"
-#include "TM4C123.h"
 #include "assets.h"
 #include <stdint.h>
 
@@ -7,8 +6,6 @@ void delay(volatile uint32_t seconds) {
     for (volatile uint32_t i = 0; i < seconds; i++)
         ;
 }
-
-uint8_t simple_read_character(void) { return (uint8_t)(UART0->DR & 0xFF); }
 
 void int2string(uint8_t number, char *string) {
 
@@ -35,10 +32,6 @@ void int2string(uint8_t number, char *string) {
         left++;
         right--;
     }
-}
-
-uint32_t get_random_seed(void) {
-    return TIMER0->TAR; // Use current timer value as seed
 }
 
 uint8_t count_active_bullets(volatile board_t *game_board) {

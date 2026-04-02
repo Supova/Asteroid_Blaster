@@ -41,6 +41,10 @@ void timer_change_speed(uint32_t timer0_period_ticks){
     TIMER0->CTL |= TimerA_EN; 
 }
 
+uint32_t timer_get_count(void) {
+    return TIMER0->TAR;
+}
+
 void TIMER0A_Handler(void) {
     // acknowledge and clear the interrupt
     TIMER0->ICR |= TIMERA_TIME_OUT_FLAG;
