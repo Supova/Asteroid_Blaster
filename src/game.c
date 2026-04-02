@@ -9,6 +9,7 @@
 
 volatile board_t game_board;
 uint8_t score = 0;
+uint8_t level = 1;
 volatile bool game_over_flag = false;
 
 
@@ -42,6 +43,12 @@ void game_over(void) {
     delay(100000);
     output_character(CLEAR_SCREEN);
     output_string(prompt_game_over);
+    
+    char level_str[3];
+    int2string(level, level_str);
+    output_string("\n\rLevel: ");
+    output_string(level_str);
+    level++;
 
     char score_str[6];
     int2string(score, score_str);

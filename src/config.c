@@ -40,6 +40,8 @@ const char *prompt_game_welcome = "\n\rWelcome to Asteroid Blaster!\n\r"
 const char *prompt_game_rules =
     "Press 'a' to move left and 'd' to move "
     "right.\n\rIf an asteroid collides with the ship, game ends.\n\r\n\r";
-const char *prompt_game_beginning =
+
+    const char *prompt_game_beginning =
     "Are you ready to start playing? (Press y)\n\r";
-const char *prompt_game_over = "\033[31;1mGAME OVER!\n\r";
+
+    const char *prompt_game_over = "\033[31;1mGAME OVER!\033[0m\n\r";
