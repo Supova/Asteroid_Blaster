@@ -45,3 +45,5 @@ const char *prompt_game_rules =
     "Are you ready to start playing? (Press y)\n\r";
 
     const char *prompt_game_over = "\033[31;1mGAME OVER!\033[0m\n\r";
+    const char *prompt_level_complete = "\033[32;1mLevel Complete!\033[0m\n\r";
+    const char *prompt_restart = "\n\rPress y to restart\n\r";
