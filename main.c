@@ -4,6 +4,7 @@
 #include "config.h"
 #include "critical_section.h"
 #include "game.h"
+#include "input.h"
 #include "render.h"
 #include "ship.h"
 #include "timer.h"
@@ -25,15 +26,23 @@ int main(void) {
     }
 
     timer_init();
-    uart_interrupt_init();
+    input_init();
 
     start_game();
 
     while (1) {
+        input_sample();
+
         if (timer_ticked) {
             timer_ticked = false;
 
             hal_critical_enter();
+            
+            GameInput input = input_poll();
+            if (input & GAME_INPUT_LEFT)  ship_move_left(&ship);
+            if (input & GAME_INPUT_RIGHT) ship_move_right(&ship);
+            if (input & GAME_INPUT_SHOOT) bullet_spawn(&game_board, ship.y - SHIP_HEIGHT, ship.x);
+            
 
             bullet_move_all_up(&game_board);
             collision_check_with_bullet_and_asteroid(&game_board);
