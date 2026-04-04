@@ -4,6 +4,11 @@
 // Game parameters
 // all #defines and string constants (BOARD, prompts, macros)
 
+//--------------------INPUT MODE----------------------------------------------------------------------------------
+// Uncomment exactly one of these to select the input source.
+// #define INPUT_MODE_UART       // Stage 1: keyboard via UART terminal
+#define INPUT_MODE_JOYSTICK   // Stage 2: KY-023 joystick + SW button
+
 //--------------------MACROS--------------------------------------------------------------------------------------
 #define CLEAR_SCREEN '\f'
 

@@ -1,10 +1,7 @@
 #include "uart.h"
 #include "TM4C123.h" // device headers
-#include "assets.h"
-#include "bullet.h"
 #include "config.h"
-#include "game.h"
-#include "ship.h"
+#include "input.h"
 /* UART0 clock, GPIO clock */
 #define UART0_EN (1 << 0)
 #define GPIOA_EN (1 << 0)
@@ -29,9 +26,13 @@
 static uint8_t uart_fifo_read_char(void) { return (uint8_t)(UART0->DR & 0xFF); }
 
 void uart_init(void) {
-    /* Enable clocks for UART0 and GPIO Port A */
+    /* Enable clocks for UART0 and GPIO Port A, wait until ready */
     SYSCTL->RCGCUART |= UART0_EN;
     SYSCTL->RCGCGPIO |= GPIOA_EN;
+    while (!(SYSCTL->PRUART & UART0_EN))
+        ;
+    while (!(SYSCTL->PRGPIO & GPIOA_EN))
+        ;
 
     /* Configure PA0 (RX) and PA1 (TX) for UART alternate function */
     GPIOA->AFSEL |= PA0_RX | PA1_TX;
@@ -64,18 +65,5 @@ void uart_interrupt_init(void) {
 void UART0_Handler(void) {
     uint8_t data = uart_fifo_read_char();
     UART0->ICR = UART_RXIC; // read first and then clear
-
-    switch (data) {
-    case LEFT:
-        ship_move_left(&ship);
-        break;
-    case RIGHT:
-        ship_move_right(&ship);
-        break;
-    case SPACE:
-        bullet_spawn(&game_board, ship.y - SHIP_HEIGHT, ship.x);
-        break;
-    default:
-        break;
-    }
+    input_uart_on_key(data);
 }
