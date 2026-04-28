@@ -34,16 +34,6 @@ void int2string(uint8_t number, char *string) {
     }
 }
 
-uint8_t count_active_bullets(volatile board_t *game_board) {
-    uint8_t count = 0;
-    for (uint8_t i = 0; i < MAX_NUM_BULLETS; i++) {
-        if (game_board->bullets[i].in_frame) {
-            count++;
-        }
-    }
-    return count;
-}
-
 uint8_t count_active_asteroids(volatile board_t *game_board) {
     uint8_t count = 0;
     for (uint8_t i = 0; i < MAX_NUM_ASTEROIDS; i++) {

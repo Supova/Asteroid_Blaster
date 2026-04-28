@@ -11,11 +11,6 @@ void collision_draw(uint32_t y, uint32_t x) {
     output_string(COLLISION_SYMBOL);
 }
 
-void collision_erase(uint32_t y, uint32_t x) {
-    cursor_goto(y, x);
-    output_string(BLANK);
-}
-
 bool collision_check_with_ship_and_asteroid(volatile ship_t ship,
                                             volatile board_t *game_board) {
     for (uint8_t i = 0; i < MAX_NUM_ASTEROIDS; i++) {

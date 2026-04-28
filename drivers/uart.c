@@ -1,7 +1,9 @@
 #include "uart.h"
-#include "TM4C123.h" // device headers
+#include "TM4C123.h"
 #include "config.h"
-#include "input.h"
+#include "bullet.h"
+#include "game.h"
+#include "ship.h"
 /* UART0 clock, GPIO clock */
 #define UART0_EN (1 << 0)
 #define GPIOA_EN (1 << 0)
@@ -62,8 +64,18 @@ void uart_interrupt_init(void) {
     NVIC_EnableIRQ(UART0_IRQn); // Enable UART0 in CPU interrupt controller
 }
 
+void uart_interrupt_disable(void) {
+    NVIC_DisableIRQ(UART0_IRQn);
+    UART0->IM &= ~UART_RXIM;
+}
+
 void UART0_Handler(void) {
     uint8_t data = uart_fifo_read_char();
-    UART0->ICR = UART_RXIC; // read first and then clear
-    input_uart_on_key(data);
+    UART0->ICR = UART_RXIC;
+    switch (data) {
+        case LEFT:  ship_move_left(&ship);                                   break;
+        case RIGHT: ship_move_right(&ship);                                  break;
+        case SPACE: bullet_spawn(&game_board, ship.y - SHIP_HEIGHT, ship.x); break;
+        default:    break;
+    }
 }

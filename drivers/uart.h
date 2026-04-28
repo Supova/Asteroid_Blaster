@@ -6,6 +6,7 @@
 void uart_init(void);
 uint8_t uart_read_blocking(void);
 void uart_interrupt_init(void);
+void uart_interrupt_disable(void);
 void UART0_Handler(void);
 
 #endif /* UART_H */
