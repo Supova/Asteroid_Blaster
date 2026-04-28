@@ -26,10 +26,10 @@
 #define SHIP_SPAWN_Y 24
 #define SHIP_SPAWN_X 11
 
-#define SHIP_SYMBOL "A"
-#define ASTEROID_SYMBOL "O"
-#define BULLET_SYMBOL "|"
-#define COLLISION_SYMBOL "X"
+#define SHIP_SYMBOL      "\033[32;1mA\033[0m"
+#define ASTEROID_SYMBOL  "\033[31;1mO\033[0m"
+#define BULLET_SYMBOL    "\033[34;1m|\033[0m"
+#define COLLISION_SYMBOL "\033[33;1mX\033[0m"
 
 // Escape sequences
 extern const char * const save_pos;
