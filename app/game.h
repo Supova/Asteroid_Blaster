@@ -8,7 +8,6 @@ extern volatile board_t game_board;
 extern uint8_t score;
 extern uint8_t hits_this_level;
 
-void init_board(void);
 void start_game(void);
 void game_over(void);
 void next_level(void);

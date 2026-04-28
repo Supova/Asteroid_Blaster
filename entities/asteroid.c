@@ -14,6 +14,13 @@ void asteroid_erase(uint32_t y, uint32_t x) {
     output_string(BLANK);
 }
 
+void asteroid_out_of_bounds_check(volatile asteroid_t *asteroid) {
+    if (asteroid->y == PLAYABLE_MAX_Y) {
+        asteroid_erase(asteroid->y, asteroid->x);
+        asteroid->in_frame = false;
+    }
+}
+
 void asteroid_move_down(volatile asteroid_t *asteroid) {
     asteroid_out_of_bounds_check(asteroid);
 
@@ -72,12 +79,5 @@ void asteroids_create(volatile board_t *game_board) {
             game_board->asteroids[asteroids_placed].in_frame = true;
             asteroids_placed++;
         }
-    }
-}
-
-void asteroid_out_of_bounds_check(volatile asteroid_t *asteroid) {
-    if (asteroid->y == PLAYABLE_MAX_Y) {
-        asteroid_erase(asteroid->y, asteroid->x);
-        asteroid->in_frame = false;
     }
 }

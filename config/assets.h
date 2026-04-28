@@ -38,7 +38,6 @@ typedef struct collision_event {
 typedef struct board {
     bullet_t bullets[MAX_NUM_BULLETS];
     asteroid_t asteroids[MAX_NUM_ASTEROIDS];
-    uint8_t bullet_count;
     uint8_t asteroid_count;
     collision_event_t collisions[MAX_NUM_ASTEROIDS];  // Max collisions visible
     uint8_t collision_count;

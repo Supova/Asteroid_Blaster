@@ -5,9 +5,7 @@
 // all #defines and string constants (BOARD, prompts, macros)
 
 //--------------------INPUT MODE----------------------------------------------------------------------------------
-// Uncomment exactly one of these to select the input source.
-// #define INPUT_MODE_UART       // Stage 1: keyboard via UART terminal
-#define INPUT_MODE_JOYSTICK   // Stage 2: KY-023 joystick + SW button
+#define INPUT_MODE_UART       // keyboard via UART terminal
 
 //--------------------MACROS--------------------------------------------------------------------------------------
 #define CLEAR_SCREEN '\f'
@@ -17,8 +15,6 @@
 
 #define LEFT 'a'
 #define RIGHT 'd'
-
-#define DELETE 0x08 // backspace
 
 // Playable area boundaries (1-indexed)
 #define PLAYABLE_MIN_Y 2

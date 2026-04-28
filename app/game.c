@@ -13,7 +13,7 @@ uint8_t score = 0;
 uint8_t level = 1;
 uint8_t hits_this_level = 0;
 
-void init_board(void) {
+static void init_board(void) {
     output_string(BOARD);
     ship.x = SHIP_SPAWN_X;
     ship.y = SHIP_SPAWN_Y;
@@ -70,10 +70,12 @@ void game_over(void) {
     output_string("\n\r");
     output_string(prompt_restart);
     output_string(show_cursor);
+    uart_interrupt_disable();
     uint8_t response = ' ';
     while (response != 'y') {
         response = uart_read_blocking();
     }
+    uart_interrupt_init();
 
     timer_change_speed(timer0_period_ticks);
     start_game();
